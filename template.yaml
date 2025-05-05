@@ -23,9 +23,9 @@ Resources:
       Environment:
         Variables:
           BUCKET_NAME: !Ref BucketName
-          LATITUDE: "52.52"
-          LONGITUDE: "13.41"
-          LOCATION_NAME: "Berlin"
+          LATITUDE: "35.44"
+          LONGITUDE: "139.63"
+          LOCATION_NAME: "Kanagawa"
       Policies:
         - Statement:
             - Effect: Allow
