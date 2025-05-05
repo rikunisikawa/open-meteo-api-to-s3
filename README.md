@@ -120,23 +120,44 @@ sam local invoke FetchPressureFunction --event events/event.json
 
 ---
 
-## 🔄 自動化（後続）
+### 8. SAMデプロイ手順 (1回目)
 
-- AWS EventBridgeによる1時間ごとのスケジュール起動は、別途構成
-- テストでは `sam local invoke` によるCLI実行でOK
+```bash
+sam deploy --guided
+```
+
+#### 実行例
+
+```text
+Stack Name: open-meteo-api-stack
+AWS Region: ap-northeast-1
+Confirm changes before deploy: Y
+Allow SAM CLI IAM role creation: Y
+Save arguments to samconfig.toml: Y
+```
 
 ---
 
-## ✅ 成功の定義（Definition of Done）
+### 8. SAMデプロイ手順 (2回目以降)
 
-- GitHub上のリポジトリに、Lambdaコード、SAMテンプレート、READMEが含まれている  
-- 気圧データがS3の指定フォーマットで保存されている  
-- Lambdaは環境変数により場所や保存先を柔軟に変更可能である
+```bash
+sam deploy
+```
 
 ---
 
-## 📝 注意点
+## ✅ 成功の定義 (Definition of Done)
 
-- 無料APIのためリクエスト制限に注意（1時間1回まで）
-- S3のバージョニングおよびプレフィックス構造を守る
-- エラー発生時は CloudWatch にログが出力されるように `print()` ログを追加
+- GitHubのリポジトリにLambdaコード、SAMテンプレート、READMEが含まれている
+- 気圧データがS3にISO8601形式で正しく保存される
+- 環境変数で設定を変更可能
+- 1時間ごとにEventBridgeで自動実行
+
+---
+
+## 📜 注意点
+
+- 無料APIのため、リクエスト頻度は1時間に1回まで
+- `print()` でCloudWatch Logsにログを出力
+- S3キー名やJSON構造はRails連携のため厳密
+- S3側のバージョニング/ライフサイクルは後日検討
