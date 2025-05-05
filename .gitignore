@@ -1,1 +1,4 @@
 .aws-sam/
+aws-sam-cli-linux-x86_64.zip
+samconfig.toml
+sam-installation/
