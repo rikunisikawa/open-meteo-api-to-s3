@@ -79,4 +79,10 @@ def handler(event, context):
         print(f"S3保存エラー: {e}")
         return {"statusCode": 500, "body": json.dumps({"message": "S3保存エラー"})}
 
+
+
+
     return {"statusCode": 200, "body": json.dumps(output)}
+
+
+
